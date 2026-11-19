@@ -10,7 +10,7 @@ export default {
     docs: { description: 'Disallow ambient time and randomness in Effect code.' },
     messages: {
       time: `Read the time from \`Clock\` or \`DateTime.now\` so tests can use \`TestClock\`; {{docs}}.`,
-      random: `Use Effect's \`Random\` (crypto-backed in the request layer, seeded in tests), or the \`create*EntityId\` helpers for record IDs; {{docs}}.`
+      random: `Use Effect's \`Random\` (crypto-backed in the request layer, seeded in tests), or the repository's ID helpers for record IDs; {{docs}}.`
     },
     schema: []
   },

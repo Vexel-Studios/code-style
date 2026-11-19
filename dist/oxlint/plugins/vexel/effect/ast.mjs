@@ -35,7 +35,7 @@ export const specifierOf = node => {
 /**
  * The repository's settings for the `vexel` rules: `settings.vexel` in the oxlint config.
  *
- * - `docs`: where the rule messages send the reader, e.g. `see the muntelo-effect-services skill`.
+ * - `docs`: where the rule messages send the reader, e.g. `see docs/effect.md`.
  * - `ownModules`: a regular expression for the import sources that are the repository's own modules.
  * - `runtimeEntry`: the only place that may build a runtime, named in `no-runtime-construction`'s message.
  * - `serverOnlyModules`: a regular expression for the import sources browser code may not import, and

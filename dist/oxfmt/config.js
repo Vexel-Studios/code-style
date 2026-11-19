@@ -1,3 +1,4 @@
+import { toolFolders } from "../ignore-patterns.js";
 /**
  * Our oxfmt style: Prettier's layout with the choices our code already made (single quotes, semicolons, no trailing
  * commas, 120 columns, `x => x`). Code ends without a final newline (the old `eol-last: never`); JSON keeps the one Bun
@@ -17,4 +18,4 @@ export const formatConfig = {
     trailingComma: 'none'
 };
 /** Files oxfmt leaves alone everywhere: prose and CI files are written by hand. */
-export const ignorePatterns = ['.claude/**', '.trae/**', '**/*.md', '**/*.yml', '**/*.yaml'];
+export const ignorePatterns = [...toolFolders, '**/*.md', '**/*.yml', '**/*.yaml'];

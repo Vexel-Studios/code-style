@@ -1,4 +1,5 @@
 import type { OxfmtConfig } from 'oxfmt';
+import { toolFolders } from '../ignore-patterns.ts';
 
 /**
  * Our oxfmt style: Prettier's layout with the choices our code already made (single quotes, semicolons, no trailing
@@ -20,4 +21,4 @@ export const formatConfig = {
 } satisfies OxfmtConfig;
 
 /** Files oxfmt leaves alone everywhere: prose and CI files are written by hand. */
-export const ignorePatterns = ['.claude/**', '.trae/**', '**/*.md', '**/*.yml', '**/*.yaml'];
+export const ignorePatterns = [...toolFolders, '**/*.md', '**/*.yml', '**/*.yaml'];

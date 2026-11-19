@@ -293,7 +293,8 @@ export declare const overrides: ({
 })[];
 /**
  * The base oxlint config. Use it as `extends: [baseConfig]` in `oxlint.config.ts`, or spread it into the `lint`
- * block of a Vite+ `vite.config.ts`, then add the repository's ignores, settings and scoped overrides.
+ * block of a Vite+ `vite.config.ts`, then add the repository's ignores, settings and scoped overrides. `extends` does
+ * not carry `ignorePatterns` over: an `oxlint.config.ts` must list `...ignorePatterns` itself.
  */
 export declare const baseConfig: {
     plugins: ("vue" | "eslint" | "unicorn" | "typescript" | "oxc" | "import")[];

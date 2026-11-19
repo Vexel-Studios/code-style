@@ -48,11 +48,10 @@ tester.run('vexel/no-imported-alias', eslintRule(noImportedAlias), {
 });
 
 tester.run('vexel/no-server-module-in-browser', eslintRule(noServerModuleInBrowser), {
-  valid: [
-    { code: "import { Db } from '@acme/platform/db';" },
-    { code: "import { Money } from '@acme/shared/money';", settings }
-  ],
+  valid: [{ code: "import { Money } from '@acme/shared/money';", settings }],
   invalid: [
+    // Turned on without its setting, the rule says so instead of silently checking nothing.
+    { code: "import { Db } from '@acme/platform/db';", errors: [{ messageId: 'unconfigured' }] },
     {
       code: "import { Db } from '@acme/platform/db';",
       settings,

@@ -121,10 +121,12 @@ declare const vexelPlugin: {
                 };
                 messages: {
                     serverOnly: string;
+                    unconfigured: string;
                 };
                 schema: never[];
             };
             create(context: any): {
+                Program: (node: any) => any;
                 CallExpression?: undefined;
                 ExportAllDeclaration?: undefined;
                 ExportNamedDeclaration?: undefined;
@@ -136,6 +138,7 @@ declare const vexelPlugin: {
                 ExportNamedDeclaration: (node: any) => any;
                 ImportDeclaration: (node: any) => void;
                 ImportExpression: (node: any) => void;
+                Program?: undefined;
             };
         };
         'no-throw': {

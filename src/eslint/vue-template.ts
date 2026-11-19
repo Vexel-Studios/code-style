@@ -2,6 +2,7 @@ import type { Linter } from 'eslint';
 import typescriptParser from '@typescript-eslint/parser';
 import vue from 'eslint-plugin-vue';
 import vueParser from 'vue-eslint-parser';
+import { generatedFolders, toolFolders } from '../ignore-patterns.ts';
 
 /**
  * The eslint-plugin-vue rules oxlint cannot run: the ones that need the template AST (an unused component, a v-for
@@ -132,13 +133,8 @@ export const vueTemplateConfig: Linter.Config[] = [
   {
     name: 'code-style/ignores',
     ignores: [
-      '**/.data/**',
-      '**/.nuxt/**',
-      '**/.output/**',
-      '**/.wrangler/**',
-      '**/coverage/**',
-      '**/dist/**',
-      '**/node_modules/**',
+      ...toolFolders,
+      ...generatedFolders,
       // Oxlint lints scripts; ESLint has no rules for them.
       '**/*.{cjs,js,mjs,ts,mts,cts,tsx,jsx}'
     ]
@@ -166,7 +162,7 @@ export const vueTemplateConfig: Linter.Config[] = [
   },
   {
     name: 'code-style/nuxt-roots',
-    files: ['**/app/pages/**/*.vue', '**/app/layouts/**/*.vue', '**/*.server.vue'],
+    files: ['**/pages/**/*.vue', '**/layouts/**/*.vue', '**/*.server.vue'],
     rules: {
       'vue/no-multiple-template-root': ['error', { disallowComments: true }]
     }

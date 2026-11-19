@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url';
+import { generatedFolders, toolFolders } from "../ignore-patterns.js";
 /** An absolute path to a file of this package, so oxlint finds the JS plugins from any repository. */
 const ownFile = (relative) => fileURLToPath(new URL(relative, import.meta.url));
 /** An absolute path to a dependency of this package, which the repository itself may not install. */
@@ -19,17 +20,7 @@ export const jsPlugins = [
     { name: 'nuxt', specifier: dependency('@nuxt/eslint-plugin') }
 ];
 /** Build output, caches and tool folders no repository lints. Add the repository's own on top. */
-export const ignorePatterns = [
-    '.claude/**',
-    '.trae/**',
-    '**/.data/**',
-    '**/.nuxt/**',
-    '**/.output/**',
-    '**/.turbo/**',
-    '**/.wrangler/**',
-    '**/coverage/**',
-    '**/dist/**'
-];
+export const ignorePatterns = [...toolFolders, ...generatedFolders];
 /**
  * The rules every repository runs: what `@nuxt/eslint-config` ran (core, TypeScript, import, Nuxt), as oxlint
  * names them, plus our house rules. Layout is oxfmt's job, so no formatting rule is here.
@@ -243,7 +234,7 @@ export const noReExportSelectors = (message) => ({
 /** The Nuxt rules `@nuxt/eslint-config` ran on pages and on `nuxt.config`, and the Vue script rules. */
 export const overrides = [
     {
-        files: ['**/app/pages/**/*.vue', '**/pages/**/*.vue'],
+        files: ['**/pages/**/*.vue'],
         rules: { 'nuxt/no-page-meta-runtime-values': 'error' }
     },
     {
@@ -257,7 +248,8 @@ export const overrides = [
 ];
 /**
  * The base oxlint config. Use it as `extends: [baseConfig]` in `oxlint.config.ts`, or spread it into the `lint`
- * block of a Vite+ `vite.config.ts`, then add the repository's ignores, settings and scoped overrides.
+ * block of a Vite+ `vite.config.ts`, then add the repository's ignores, settings and scoped overrides. `extends` does
+ * not carry `ignorePatterns` over: an `oxlint.config.ts` must list `...ignorePatterns` itself.
  */
 export const baseConfig = {
     plugins: ['eslint', 'typescript', 'import', 'unicorn', 'vue', 'oxc'],

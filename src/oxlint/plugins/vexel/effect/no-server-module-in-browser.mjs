@@ -11,14 +11,15 @@ export default {
     type: 'problem',
     docs: { description: 'Disallow importing server-only modules from browser-reachable code.' },
     messages: {
-      serverOnly: '`{{source}}` is server-only. {{hint}}'
+      serverOnly: '`{{source}}` is server-only. {{hint}}',
+      unconfigured: 'Set `settings.vexel.serverOnlyModules` in the oxlint config: without it this rule checks nothing.'
     },
     schema: []
   },
   create(context) {
     const { serverOnlyModules, serverOnlyMessage } = settingsOf(context);
 
-    if (!serverOnlyModules) return {};
+    if (!serverOnlyModules) return { Program: node => context.report({ messageId: 'unconfigured', node }) };
 
     const serverOnly = new RegExp(serverOnlyModules, 'u');
     const hint = serverOnlyMessage ?? 'Move browser-safe code into a shared module.';
