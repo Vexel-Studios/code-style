@@ -1,3 +1,6 @@
+// Not named oxlint.config.ts or oxfmt.config.ts: consumers install this repository from git, files and all, and oxlint
+// and oxfmt would pick a config with the standard name up as a nested config inside their node_modules.
+
 import { defineConfig } from 'oxfmt';
 import { formatConfig, ignorePatterns } from './src/oxfmt/config.ts';
 

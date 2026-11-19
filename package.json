@@ -30,11 +30,11 @@
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "check:dist": "bun run build && git diff --exit-code --stat -- dist && git ls-files --others --exclude-standard -- dist | (! grep .)",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "bun run build && oxlint --deny-warnings",
-    "format": "oxfmt",
-    "format:check": "oxfmt --check",
+    "lint": "bun run build && oxlint -c oxlint.repo.config.ts --deny-warnings",
+    "format": "oxfmt -c oxfmt.repo.config.ts",
+    "format:check": "oxfmt -c oxfmt.repo.config.ts --check",
     "test": "node scripts/run-rule-tests.mjs",
-    "lint:fix": "bun run build && oxlint --fix && oxfmt"
+    "lint:fix": "bun run build && oxlint -c oxlint.repo.config.ts --fix && oxfmt -c oxfmt.repo.config.ts"
   },
   "dependencies": {
     "@nuxt/eslint-plugin": "1.17.0",
