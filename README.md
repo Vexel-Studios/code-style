@@ -73,7 +73,8 @@ Scripts: `lint` runs `oxlint && eslint .`, `lint:fix` runs `oxlint --fix && esli
   provenance and local changes in `src/oxlint/plugins/anti-slop/UPSTREAM.md`.
 - **`eslint-core`**: ESLint's own `no-restricted-imports` and `no-restricted-syntax`, run unchanged inside oxlint.
   Oxlint's native `no-restricted-imports` compiles regex patterns with Rust's regex engine, which has no look-ahead;
-  use `eslint-core/no-restricted-imports` for import boundaries that need it.
+  use `eslint-core/no-restricted-imports` for import boundaries that need it. In a `no-restricted-syntax` selector regex
+  write `[.]` and `[/]`, not `\.` and `\/`: oxlint's selector parser takes no backslash escapes there.
 - **Vue templates** (`vueTemplateRules`): the eslint-plugin-vue rules oxlint cannot run yet. Drop a rule here once
   oxlint implements it natively. In a `.vue` script block, disable an oxlint rule with `oxlint-disable-next-line`:
   ESLint also reads `.vue` files and reports an `eslint-disable` for a rule it does not know.

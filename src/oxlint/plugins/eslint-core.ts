@@ -8,7 +8,9 @@ import { builtinRules } from 'eslint/use-at-your-own-risk';
  *   has no look-ahead or look-behind; the import boundaries need both.
  * - `no-restricted-syntax`: not implemented natively; we use it for the no-barrel and module-path selectors.
  *
- * Configure them under the `eslint-core/` prefix with exactly ESLint's options.
+ * Configure them under the `eslint-core/` prefix with exactly ESLint's options. One difference: oxlint parses
+ * `no-restricted-syntax` selectors itself, and a regex inside a selector (`[value=/.../]`) takes no backslash escapes:
+ * `\.` and `\u002F` silently never match and `\/` crashes the plugin. Use character classes (`[.]`, `[/]`) instead.
  */
 const ruleNames = ['no-restricted-imports', 'no-restricted-syntax'] as const;
 
