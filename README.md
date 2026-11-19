@@ -17,8 +17,9 @@ The package is served from this repository by git tag, so no registry token is n
 bun add -d github:Vexel-Studios/code-style#v1.0.0 oxlint@1.94.0 oxfmt@0.79.0 eslint
 ```
 
-`oxlint`, `oxfmt` and `eslint` are peer dependencies so their binaries land in the repository's `node_modules/.bin`.
-The plugins and parsers come with this package.
+`oxlint`, `oxfmt` and `eslint` are peer dependencies so their binaries land in the repository's `node_modules/.bin`;
+`oxlint` and `oxfmt` are optional, because Vite+ (`vp lint`, `vp fmt`) brings its own. The plugins and parsers come
+with this package.
 
 ## Use
 
