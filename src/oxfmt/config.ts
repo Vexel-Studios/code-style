@@ -11,7 +11,12 @@ export const formatConfig = {
   arrowParens: 'avoid',
   endOfLine: 'lf',
   insertFinalNewline: false,
-  overrides: [{ files: ['**/*.json', '**/*.jsonc', '**/*.toml'], options: { insertFinalNewline: true } }],
+  overrides: [
+    { files: ['**/*.json', '**/*.jsonc', '**/*.toml'], options: { insertFinalNewline: true } },
+    // Tagged templates (html`...`, css`...`, sql`...`) build strings at runtime: reformatting their contents changes
+    // the output, e.g. the HTML of an email. Vue files keep the default, which formats their <script> blocks.
+    { files: ['**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}'], options: { embeddedLanguageFormatting: 'off' } }
+  ],
   printWidth: 120,
   quoteProps: 'consistent',
   semi: true,

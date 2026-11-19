@@ -8,12 +8,19 @@ export declare const formatConfig: {
     arrowParens: "avoid";
     endOfLine: "lf";
     insertFinalNewline: false;
-    overrides: {
+    overrides: ({
         files: string[];
         options: {
             insertFinalNewline: true;
+            embeddedLanguageFormatting?: undefined;
         };
-    }[];
+    } | {
+        files: string[];
+        options: {
+            embeddedLanguageFormatting: "off";
+            insertFinalNewline?: undefined;
+        };
+    })[];
     printWidth: number;
     quoteProps: "consistent";
     semi: true;
