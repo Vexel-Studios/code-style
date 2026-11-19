@@ -1,15 +1,15 @@
 import { toolFolders } from "../ignore-patterns.js";
 /**
  * Our oxfmt style: Prettier's layout with the choices our code already made (single quotes, semicolons, no trailing
- * commas, 120 columns, `x => x`). Code ends without a final newline (the old `eol-last: never`); JSON keeps the one Bun
- * and drizzle-kit write. Spread it into `oxfmt.config.ts` (or the `fmt` block of a Vite+ `vite.config.ts`) and add the
+ * commas, 120 columns, `x => x`). Code ends without a final newline (the old `eol-last: never`); JSON and TOML keep the
+ * one Bun, drizzle-kit and cargo write. Spread it into `oxfmt.config.ts` (or the `fmt` block of a Vite+ `vite.config.ts`) and add the
  * repository's `ignorePatterns` and, for Tailwind apps, `sortTailwindcss`.
  */
 export const formatConfig = {
     arrowParens: 'avoid',
     endOfLine: 'lf',
     insertFinalNewline: false,
-    overrides: [{ files: ['**/*.json', '**/*.jsonc'], options: { insertFinalNewline: true } }],
+    overrides: [{ files: ['**/*.json', '**/*.jsonc', '**/*.toml'], options: { insertFinalNewline: true } }],
     printWidth: 120,
     quoteProps: 'consistent',
     semi: true,

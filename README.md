@@ -14,7 +14,7 @@ blocks, oxfmt for layout, and a slim ESLint that runs only the eslint-plugin-vue
 The package is served from this repository by git tag, so no registry token is needed anywhere:
 
 ```sh
-bun add -d github:Vexel-Studios/code-style#v1.0.2 oxlint@1.94.0 oxfmt@0.79.0 eslint
+bun add -d github:Vexel-Studios/code-style#v1.0.3 oxlint@1.94.0 oxfmt@0.79.0 eslint
 ```
 
 `oxlint`, `oxfmt` and `eslint` are peer dependencies so their binaries land in the repository's `node_modules/.bin`;

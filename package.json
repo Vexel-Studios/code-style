@@ -1,6 +1,6 @@
 {
   "name": "@vexel-studios/code-style",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Shared oxlint, oxfmt and Vue-template ESLint setup for Vexel Studios repositories.",
   "license": "MIT",
   "type": "module",
