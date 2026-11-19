@@ -1,0 +1,61 @@
+{
+  "name": "@vexel-studios/code-style",
+  "version": "1.0.0",
+  "description": "Shared oxlint, oxfmt and Vue-template ESLint setup for Vexel Studios repositories.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "bun@1.4.4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vexel-Studios/code-style.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./oxlint": {
+      "types": "./dist/oxlint/config.d.ts",
+      "default": "./dist/oxlint/config.js"
+    },
+    "./oxfmt": {
+      "types": "./dist/oxfmt/config.d.ts",
+      "default": "./dist/oxfmt/config.js"
+    },
+    "./eslint-vue": {
+      "types": "./dist/eslint/vue-template.d.ts",
+      "default": "./dist/eslint/vue-template.js"
+    }
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "check:dist": "bun run build && git diff --exit-code --stat -- dist && git ls-files --others --exclude-standard -- dist | (! grep .)",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "bun run build && oxlint --deny-warnings",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "test": "node scripts/run-rule-tests.mjs",
+    "lint:fix": "bun run build && oxlint --fix && oxfmt"
+  },
+  "dependencies": {
+    "@nuxt/eslint-plugin": "1.17.0",
+    "@oxlint/plugins": "1.94.0",
+    "@typescript-eslint/parser": "8.72.2",
+    "eslint-plugin-vue": "10.12.1",
+    "vue-eslint-parser": "10.4.2"
+  },
+  "peerDependencies": {
+    "eslint": "^10.11.0",
+    "oxfmt": "0.79.0",
+    "oxlint": "1.94.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "eslint": "10.15.0",
+    "oxfmt": "0.79.0",
+    "oxlint": "1.94.0",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}
